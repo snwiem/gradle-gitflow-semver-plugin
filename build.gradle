@@ -12,14 +12,32 @@ apply plugin: 'java'
 // Apply the application plugin to add support for building an application
 apply plugin: 'application'
 
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
 // In this section you declare where to find the dependencies of your project
 repositories {
     // Use jcenter for resolving your dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
+    mavenCentral()
 }
 
+
 dependencies {
+    // https://mvnrepository.com/artifact/org.eclipse.jgit/org.eclipse.jgit
+    compile 'org.eclipse.jgit:org.eclipse.jgit:4.7.0.201704051617-r'
+
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    compile 'org.slf4j:slf4j-api:1.7.25'
+
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-simple
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+
+
+    //compile gradleApi()
+    //compile localGroovy()
+
     // This dependency is found on compile classpath of this component and consumers.
     compile 'com.google.guava:guava:20.0'
 
@@ -28,5 +46,5 @@ dependencies {
 }
 
 // Define the main class for the application
-mainClassName = 'App'
+mainClassName = 'org.syracus.gradle.plugin.semflow.App'
 
