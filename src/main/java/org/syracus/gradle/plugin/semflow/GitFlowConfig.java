@@ -184,12 +184,12 @@ public class GitFlowConfig {
             this.develop = config.getString(GitFlowConfig.CONFIG_SECTION_GITFLOW, GitFlowConfig.CONFIG_SECTION_BRANCH, GitFlowConfig.BRANCH_NAME_DEVELOP);
 
             this.bugfix = config.getString(GitFlowConfig.CONFIG_SECTION_GITFLOW, GitFlowConfig.CONFIG_SECTION_PREFIX, GitFlowConfig.BRANCH_NAME_BUGFIX);
-            this.feature = config.getString(GitFlowConfig.CONFIG_SECTION_GITFLOW, GitFlowConfig.CONFIG_SECTION_BRANCH, GitFlowConfig.BRANCH_NAME_FEATURE);
-            this.hotfix = config.getString(GitFlowConfig.CONFIG_SECTION_GITFLOW, GitFlowConfig.CONFIG_SECTION_BRANCH, GitFlowConfig.BRANCH_NAME_HOTFIX);
-            this.release = config.getString(GitFlowConfig.CONFIG_SECTION_GITFLOW, GitFlowConfig.CONFIG_SECTION_BRANCH, GitFlowConfig.BRANCH_NAME_RELEASE);
-            this.support = config.getString(GitFlowConfig.CONFIG_SECTION_GITFLOW, GitFlowConfig.CONFIG_SECTION_BRANCH, GitFlowConfig.BRANCH_NAME_SUPPORT);
+            this.feature = config.getString(GitFlowConfig.CONFIG_SECTION_GITFLOW, GitFlowConfig.CONFIG_SECTION_PREFIX, GitFlowConfig.BRANCH_NAME_FEATURE);
+            this.hotfix = config.getString(GitFlowConfig.CONFIG_SECTION_GITFLOW, GitFlowConfig.CONFIG_SECTION_PREFIX, GitFlowConfig.BRANCH_NAME_HOTFIX);
+            this.release = config.getString(GitFlowConfig.CONFIG_SECTION_GITFLOW, GitFlowConfig.CONFIG_SECTION_PREFIX, GitFlowConfig.BRANCH_NAME_RELEASE);
+            this.support = config.getString(GitFlowConfig.CONFIG_SECTION_GITFLOW, GitFlowConfig.CONFIG_SECTION_PREFIX, GitFlowConfig.BRANCH_NAME_SUPPORT);
 
-            this.versiontag = config.getString(GitFlowConfig.CONFIG_SECTION_GITFLOW, GitFlowConfig.CONFIG_SECTION_BRANCH, GitFlowConfig.CONFIG_NAME_VERSIONTAG);
+            this.versiontag = config.getString(GitFlowConfig.CONFIG_SECTION_GITFLOW, GitFlowConfig.CONFIG_SECTION_PREFIX, GitFlowConfig.CONFIG_NAME_VERSIONTAG);
             this.hooks = config.getString(GitFlowConfig.CONFIG_SECTION_GITFLOW, GitFlowConfig.CONFIG_SECTION_PATH, GitFlowConfig.CONFIG_NAME_HOOKS);
             return this;
         }

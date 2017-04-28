@@ -46,7 +46,7 @@ public class DefaultVersionFactory extends AbstractVersionFactory implements IVe
     @Override
     Version buildNextVersion(Branch branch, Version lastVersion) {
         if (null == lastVersion)
-            return Version.fromString(getInitialVersion());
+            lastVersion = Version.fromString(getInitialVersion());
 
         if (getFlowConfig().isMaster(branch)) {
             // in master branch we return the latest release version
