@@ -1,3 +1,4 @@
+#
 # Created by .ignore support plugin (hsz.mobi)
 ### Maven template
 target/
@@ -30,6 +31,8 @@ buildNumber.properties
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 
+.idea/
+#
 # Gradle:
 .idea/**/gradle.xml
 .idea/**/libraries
