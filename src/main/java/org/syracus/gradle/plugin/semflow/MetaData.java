@@ -157,6 +157,8 @@ class MetaData implements Comparable<MetaData> {
     }
 
     static MetaData fromString(String metaVersionStr) {
+        if (null == metaVersionStr || metaVersionStr.isEmpty())
+            return MetaData.NULL;
         StringTokenizer st = new StringTokenizer(metaVersionStr, IDENT_SEPARATOR, false);
         Matcher m = null;
         ArrayList<String> identifiers = new ArrayList<>();
