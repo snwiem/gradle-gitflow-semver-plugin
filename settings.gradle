@@ -15,4 +15,4 @@ include 'api'
 include 'services:webservice'
 */
 
-rootProject.name = 'gradle-gitflow-semver-plugin'
+rootProject.name = 'semflow-plugin'
