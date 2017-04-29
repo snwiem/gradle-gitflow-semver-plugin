@@ -39,9 +39,9 @@ public abstract class AbstractVersionFactory implements IVersionFactory {
             Version currentVersion = GitRepository.findLatestTagVersionWithPrefix(repository, allTagsWithPrefix, getFlowConfig().getVersiontag());
             return currentVersion;
         } catch(IOException e) {
-            throw new SemFlowException("Failed to get current version", e);
+            throw new SemflowPlugin.VersionException("Failed to get current version", e);
         } catch(GitAPIException e) {
-            throw new SemFlowException("Failed to get current version", e);
+            throw new SemflowPlugin.VersionException("Failed to get current version", e);
         }
     }
 
@@ -54,9 +54,9 @@ public abstract class AbstractVersionFactory implements IVersionFactory {
             Version nextVersion = buildNextVersion(branch, currentVersion);
             return nextVersion;
         } catch(IOException e) {
-            throw new SemFlowException("Failed to get current version", e);
+            throw new SemflowPlugin.VersionException("Failed to get next version", e);
         } catch(GitAPIException e) {
-            throw new SemFlowException("Failed to get current version", e);
+            throw new SemflowPlugin.VersionException("Failed to get next version", e);
         }
 
     }

@@ -1,3 +1,7 @@
+# snwiem
+.idea/
+classes/
+
 #
 # Created by .ignore support plugin (hsz.mobi)
 ### Maven template
@@ -31,7 +35,6 @@ buildNumber.properties
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 
-.idea/
 #
 # Gradle:
 .idea/**/gradle.xml

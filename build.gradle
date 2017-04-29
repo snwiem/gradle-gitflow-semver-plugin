@@ -15,12 +15,18 @@ apply plugin: 'application'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
 
+apply plugin: 'maven'
+
+group = 'org.syracus.gradle'
+version = '1.0.0-SNAPSHOT'
+
 // In this section you declare where to find the dependencies of your project
 repositories {
     // Use jcenter for resolving your dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
     mavenCentral()
+    mavenLocal()
 }
 
 
@@ -35,7 +41,7 @@ dependencies {
     compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
 
 
-    //compile gradleApi()
+    compile gradleApi()
     //compile localGroovy()
 
     // This dependency is found on compile classpath of this component and consumers.

@@ -9,6 +9,7 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
+import org.gradle.api.Project;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,6 +35,8 @@ public class GitRepository {
     private static final String MODIFIER_BETA = "BETA";
     private static final String DEFAULT_VERSION = "0.0.0";
 
+
+
     public static File getCurrentWorkingDirectory() {
         File currentWorkingDirectory = Paths.get(".")
                 .toAbsolutePath()
@@ -48,12 +51,10 @@ public class GitRepository {
         return getRepository(repositoryLocationPath);
     }
 
-    /*
     public static Repository getRepository(Project project) throws IOException {
         File projectDirectory = project.getProjectDir().getAbsoluteFile();
         return getRepository(projectDirectory);
     }
-    */
 
     public static Repository getRepository(File repositoryLocation) throws IOException
     {
@@ -74,6 +75,32 @@ public class GitRepository {
         return repository;
     }
 
+    public static Version getRepositoryVersion(final Repository repository, final SemflowExtension extension) {
+        final GitFlowConfig flowConfig = new GitFlowConfig.Builder().fromRepository(repository).build();
+        IVersionFactory versionFactory = new DefaultVersionFactory.Builder(flowConfig)
+                .initialVersion(extension.getInitialVersion())
+                .alphaModifier(extension.getAlphaModifier())
+                .betaModifier(extension.getBetaModifier())
+                .dirtyIdentifier(extension.getDirtyIdentifier())
+                .build();
+
+        Version repositoryVersion = versionFactory.getCurrentVersion(repository);
+        return repositoryVersion;
+    }
+
+    public static Version getNextRepositoryVersion(final Repository repository, final SemflowExtension extension) {
+        final GitFlowConfig flowConfig = new GitFlowConfig.Builder().fromRepository(repository).build();
+        IVersionFactory versionFactory = new DefaultVersionFactory.Builder(flowConfig)
+                .initialVersion(extension.getInitialVersion())
+                .alphaModifier(extension.getAlphaModifier())
+                .betaModifier(extension.getBetaModifier())
+                .dirtyIdentifier(extension.getDirtyIdentifier())
+                .build();
+
+        Version repositoryVersion = versionFactory.getNextVersion(repository);
+        return repositoryVersion;
+    }
+
     public static boolean isClean(Repository repository) throws GitAPIException {
         Git git = new Git(repository);
         Status status = git.status().call();
@@ -88,7 +115,7 @@ public class GitRepository {
     public static ObjectId getHead(Repository repository) {
         Ref headRef = repository.getAllRefs().get(REF_HEAD);
         if (null == headRef)
-            throw new SemFlowException("No HEAD ref found in repository.");
+            throw new RepositoryException("No HEAD ref found in repository.");
         return headRef.getObjectId();
     }
 
@@ -215,6 +242,24 @@ public class GitRepository {
         return objectId;
     }
 
+    public static class RepositoryException extends RuntimeException {
+        private static final long serialVersionUID = -1L;
+
+        public RepositoryException() {
+        }
+
+        public RepositoryException(String message) {
+            super(message);
+        }
+
+        public RepositoryException(String message, Throwable cause) {
+            super(message, cause);
+        }
+
+        public RepositoryException(Throwable cause) {
+            super(cause);
+        }
+    }
 
 
 }

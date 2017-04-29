@@ -13,10 +13,10 @@ import java.util.Set;
  */
 public class DefaultVersionFactory extends AbstractVersionFactory implements IVersionFactory {
 
-    private static final String DEFAULT_ALPHA_MODIFIER = "ALPHA";
-    private static final String DEFAULT_BETA_MODIFIER = "BETA";
-    private static final String DEFAULT_DIRTY_IDENTIFIER = "DIRTY";
-    private static final String DEFAULT_INITIAL_VERSION = "0.1.0";
+    public static final String DEFAULT_ALPHA_MODIFIER = "ALPHA";
+    public static final String DEFAULT_BETA_MODIFIER = "BETA";
+    public static final String DEFAULT_DIRTY_IDENTIFIER = "DIRTY";
+    public static final String DEFAULT_INITIAL_VERSION = "0.1.0";
 
 
     private final String alphaModifier;
@@ -98,7 +98,7 @@ public class DefaultVersionFactory extends AbstractVersionFactory implements IVe
                     .setPreReleaseVersion(supportName)
                     .setBuildMeta(branch.isClean() ? null : getDirtyIdentifier());
         }
-        throw new SemFlowException("Unknown branch type");
+        throw new GitRepository.RepositoryException("Unknown branch type");
     }
 
     public static class Builder {

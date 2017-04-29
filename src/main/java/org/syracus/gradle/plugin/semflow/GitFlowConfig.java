@@ -179,7 +179,16 @@ public class GitFlowConfig {
             return this;
         }
         public Builder fromRepository(Repository repository) {
+            if (null == repository)
+                throw new IllegalArgumentException("Repository not valid");
             final StoredConfig config = repository.getConfig();
+            if (null == config)
+                throw new IllegalArgumentException("No configuration found in repository");
+            // check if we do have a gitflow section
+            if (false == config.getSections().contains(GitFlowConfig.CONFIG_SECTION_GITFLOW)) {
+                throw new IllegalArgumentException("Repository does not support gitflow");
+            }
+
             this.master = config.getString(GitFlowConfig.CONFIG_SECTION_GITFLOW, GitFlowConfig.CONFIG_SECTION_BRANCH, GitFlowConfig.BRANCH_NAME_MASTER);
             this.develop = config.getString(GitFlowConfig.CONFIG_SECTION_GITFLOW, GitFlowConfig.CONFIG_SECTION_BRANCH, GitFlowConfig.BRANCH_NAME_DEVELOP);
 
