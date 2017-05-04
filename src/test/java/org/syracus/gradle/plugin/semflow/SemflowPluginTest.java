@@ -3,6 +3,7 @@ package org.syracus.gradle.plugin.semflow;
 import org.gradle.api.Project;
 import org.gradle.api.Task;
 import org.gradle.testfixtures.ProjectBuilder;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
@@ -14,7 +15,9 @@ import static org.junit.Assert.assertTrue;
  */
 public class SemflowPluginTest {
 
+
     @Test
+    @Ignore
     public void testPluginApply() {
         Project project = ProjectBuilder.builder()
                 .withProjectDir(new File("C:\\Users\\snwiem\\Sources\\semflow-test"))
