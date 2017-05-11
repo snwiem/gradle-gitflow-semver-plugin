@@ -111,17 +111,17 @@ public class DefaultVersionFactoryTest {
     public void testGetVersionReleaseClean() {
         Branch branch = new Branch("release/1.5.35");
         Version lastReleaseVersion = Version.fromString("1.5.34");
-        Version expectedVersion = Version.fromString("1.5.35");
-        Version hotfixVersion = this.factory.buildNextVersion(branch, lastReleaseVersion);
-        assertEquals(expectedVersion, hotfixVersion);
+        Version expectedVersion = Version.fromString("1.5.35-RC");
+        Version releaseVersion = this.factory.buildNextVersion(branch, lastReleaseVersion);
+        assertEquals(expectedVersion, releaseVersion);
     }
 
     @Test
     public void testGetVersionReleaseDirty() {
         Branch branch = new Branch("release/1.5.35", false);
         Version lastReleaseVersion = Version.fromString("1.5.34");
-        Version expectedVersion = Version.fromString("1.5.35+DIRTY");
-        Version hotfixVersion = this.factory.buildNextVersion(branch, lastReleaseVersion);
-        assertEquals(expectedVersion, hotfixVersion);
+        Version expectedVersion = Version.fromString("1.5.35-RC+DIRTY");
+        Version releaseVersion = this.factory.buildNextVersion(branch, lastReleaseVersion);
+        assertEquals(expectedVersion, releaseVersion);
     }
 }
