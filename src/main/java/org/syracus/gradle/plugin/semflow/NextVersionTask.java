@@ -21,13 +21,8 @@ public class NextVersionTask extends DefaultTask {
         SemflowExtension extension = (SemflowExtension)getProject().getExtensions().findByName(SemflowPlugin.NAME);
         try {
             final Repository repository = GitRepository.getRepository(getProject());
-            final GitFlowConfig flowConfig = new GitFlowConfig.Builder().fromRepository(repository).build();
-            IVersionFactory versionFactory = new DefaultVersionFactory.Builder(flowConfig)
-                    .initialVersion(extension.getInitialVersion())
-                    .alphaModifier(extension.getAlphaModifier())
-                    .betaModifier(extension.getBetaModifier())
-                    .dirtyIdentifier(extension.getDirtyIdentifier())
-                    .build();
+            final GitFlowConfig flowConfig = new GitFlowConfig.Builder().fromExtension(extension).build();
+            IVersionFactory versionFactory = new DefaultVersionFactory.Builder(flowConfig).extension(extension).build();
 
             Version nextVersion = versionFactory.getNextVersion(repository);
             if (null == nextVersion) {

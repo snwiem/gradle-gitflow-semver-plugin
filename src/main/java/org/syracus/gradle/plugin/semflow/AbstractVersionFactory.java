@@ -49,7 +49,9 @@ public abstract class AbstractVersionFactory implements IVersionFactory {
     public Version getNextVersion(Repository repository) {
         try {
             Branch branch = GitRepository.getBranch(repository);
+            //System.out.println("**** versionTag: " + getFlowConfig().getVersiontag());
             Map<ObjectId, Set<Tag>> allTagsWithPrefix = GitRepository.getAllTagsWithPrefix(repository, getFlowConfig().getVersiontag());
+            //allTagsWithPrefix.entrySet().stream().forEach(e -> System.out.println("******** " + e.getKey()));
             Version currentVersion = GitRepository.findLatestTagVersionWithPrefix(repository, allTagsWithPrefix, getFlowConfig().getVersiontag());
             Version nextVersion = buildNextVersion(branch, currentVersion);
             return nextVersion;

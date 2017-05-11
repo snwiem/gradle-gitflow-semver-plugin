@@ -202,6 +202,19 @@ public class GitFlowConfig {
             this.hooks = config.getString(GitFlowConfig.CONFIG_SECTION_GITFLOW, GitFlowConfig.CONFIG_SECTION_PATH, GitFlowConfig.CONFIG_NAME_HOOKS);
             return this;
         }
+
+        public Builder fromExtension(SemflowExtension extension) {
+            this.master = extension.getMaster();
+            this.develop = extension.getDevelop();
+            this.bugfix = extension.getBugfix();
+            this.feature = extension.getFeature();
+            this.hotfix = extension.getHotfix();
+            this.release = extension.getRelease();
+            this.support = extension.getSupport();
+            this.versiontag = extension.getReleaseTag();
+            return this;
+        }
+
         public GitFlowConfig build() {
             return new GitFlowConfig(master, develop, feature, bugfix, release, hotfix, support, versiontag, hooks);
         }

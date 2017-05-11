@@ -13,9 +13,9 @@ import java.util.Set;
  */
 public class DefaultVersionFactory extends AbstractVersionFactory implements IVersionFactory {
 
-    public static final String DEFAULT_ALPHA_MODIFIER = "ALPHA";
-    public static final String DEFAULT_BETA_MODIFIER = "BETA";
-    public static final String DEFAULT_DIRTY_IDENTIFIER = "DIRTY";
+    public static final String DEFAULT_ALPHA_MODIFIER = "SNAPSHOT";
+    public static final String DEFAULT_BETA_MODIFIER = "RELEASE";
+    public static final String DEFAULT_DIRTY_IDENTIFIER = null; // "DIRTY";
     public static final String DEFAULT_INITIAL_VERSION = "0.1.0";
 
 
@@ -150,10 +150,10 @@ public class DefaultVersionFactory extends AbstractVersionFactory implements IVe
 
 
         public Builder extension(SemflowExtension extension) {
-            initialVersion(extension.getInitialVersion());
-            alphaModifier(extension.getAlphaModifier());
-            betaModifier(extension.getBetaModifier());
-            dirtyIdentifier(extension.getDirtyIdentifier());
+            initialVersion(extension.getInitial());
+            alphaModifier(extension.getSnapshot());
+            betaModifier(extension.getCandidate());
+            dirtyIdentifier(extension.getDirty());
             return this;
         }
 
