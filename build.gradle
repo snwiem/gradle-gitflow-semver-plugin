@@ -20,7 +20,7 @@ apply plugin: 'maven-publish'
 
 
 group = 'org.syracus.gradle'
-version = '1.0.2'
+version = '1.0.3'
 
 
 
