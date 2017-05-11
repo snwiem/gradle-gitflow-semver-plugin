@@ -13,7 +13,8 @@ public class SemflowExtension {
     private String initialVersion = DefaultVersionFactory.DEFAULT_INITIAL_VERSION;
     private String alphaModifier = DefaultVersionFactory.DEFAULT_ALPHA_MODIFIER;
     private String betaModifier = DefaultVersionFactory.DEFAULT_BETA_MODIFIER;
-    private String dirtyIdentifier = DefaultVersionFactory.DEFAULT_DIRTY_IDENTIFIER;
+    private String dirtyIdentifier = null; //DefaultVersionFactory.DEFAULT_DIRTY_IDENTIFIER;
+
     private final Project project;
 
     public SemflowExtension(Project project) {

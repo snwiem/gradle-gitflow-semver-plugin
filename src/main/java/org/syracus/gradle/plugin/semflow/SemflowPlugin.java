@@ -18,7 +18,7 @@ public class SemflowPlugin implements Plugin<Project> {
         //project.getConvention().getPlugins().put("semflow", new SemflowConvention(project));
         project.getTasks().create(ProjectVersionTask.TASK_NAME, ProjectVersionTask.class);
         project.getTasks().create(RepositoryVersionTask.TASK_NAME, RepositoryVersionTask.class);
-        project.getTasks().create(NextVersionTask.TASK_NAME, NextVersionTask.class);
+        //project.getTasks().create(NextVersionTask.TASK_NAME, NextVersionTask.class);
 
     }
 

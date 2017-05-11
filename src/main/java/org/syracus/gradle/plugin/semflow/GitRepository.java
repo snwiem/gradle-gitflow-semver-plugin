@@ -77,12 +77,7 @@ public class GitRepository {
 
     public static Version getRepositoryVersion(final Repository repository, final SemflowExtension extension) {
         final GitFlowConfig flowConfig = new GitFlowConfig.Builder().fromRepository(repository).build();
-        IVersionFactory versionFactory = new DefaultVersionFactory.Builder(flowConfig)
-                .initialVersion(extension.getInitialVersion())
-                .alphaModifier(extension.getAlphaModifier())
-                .betaModifier(extension.getBetaModifier())
-                .dirtyIdentifier(extension.getDirtyIdentifier())
-                .build();
+        IVersionFactory versionFactory = new DefaultVersionFactory.Builder(flowConfig).extension(extension).build();
 
         Version repositoryVersion = versionFactory.getCurrentVersion(repository);
         return repositoryVersion;
@@ -90,12 +85,7 @@ public class GitRepository {
 
     public static Version getNextRepositoryVersion(final Repository repository, final SemflowExtension extension) {
         final GitFlowConfig flowConfig = new GitFlowConfig.Builder().fromRepository(repository).build();
-        IVersionFactory versionFactory = new DefaultVersionFactory.Builder(flowConfig)
-                .initialVersion(extension.getInitialVersion())
-                .alphaModifier(extension.getAlphaModifier())
-                .betaModifier(extension.getBetaModifier())
-                .dirtyIdentifier(extension.getDirtyIdentifier())
-                .build();
+        IVersionFactory versionFactory = new DefaultVersionFactory.Builder(flowConfig).extension(extension).build();
 
         Version repositoryVersion = versionFactory.getNextVersion(repository);
         return repositoryVersion;

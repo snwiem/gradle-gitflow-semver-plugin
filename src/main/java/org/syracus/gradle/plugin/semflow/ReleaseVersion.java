@@ -90,7 +90,7 @@ class ReleaseVersion implements Comparable<ReleaseVersion> {
     static ReleaseVersion fromString(String versionStr) {
         Matcher m = PATTERN.matcher(versionStr);
         if (false == m.matches())
-            throw new IllegalArgumentException("Invalid version format");
+            throw new IllegalArgumentException("Invalid version format: " + versionStr);
         int major = Integer.parseInt(m.group(1));
         int minor = Integer.parseInt(m.group(2));
         int patch = Integer.parseInt(m.group(3));

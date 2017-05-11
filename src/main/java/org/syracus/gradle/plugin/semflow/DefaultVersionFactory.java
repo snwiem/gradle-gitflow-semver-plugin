@@ -23,6 +23,7 @@ public class DefaultVersionFactory extends AbstractVersionFactory implements IVe
     private final String betaModifier;
     private final String dirtyIdentifier;
 
+
     private DefaultVersionFactory(final GitFlowConfig flowConfig, String initialVersion, String alphaModifier, String betaModifier, String dirtyIdentifier) {
         super(flowConfig, initialVersion);
         this.alphaModifier = alphaModifier;
@@ -70,6 +71,7 @@ public class DefaultVersionFactory extends AbstractVersionFactory implements IVe
             String versionPartOfReleaseBranch = branch.getName();
             return Version
                     .fromString(versionPartOfReleaseBranch)
+                    .setPreReleaseVersion(getBetaModifier())
                     .setBuildMeta(branch.isClean() ? null : getDirtyIdentifier());
         } else if (getFlowConfig().isHotfix(branch)) {
             // hotfix branches are always spawned from master
@@ -100,6 +102,7 @@ public class DefaultVersionFactory extends AbstractVersionFactory implements IVe
         }
         throw new GitRepository.RepositoryException("Unknown branch type");
     }
+
 
     public static class Builder {
 
@@ -137,9 +140,20 @@ public class DefaultVersionFactory extends AbstractVersionFactory implements IVe
         }
 
         public Builder dirtyIdentifier(String identifier) {
+            /*
             if (null == identifier || identifier.isEmpty())
                 throw new IllegalArgumentException("Identifier can not be NULL");
+            */
             this.dirtyIdentifier = identifier;
+            return this;
+        }
+
+
+        public Builder extension(SemflowExtension extension) {
+            initialVersion(extension.getInitialVersion());
+            alphaModifier(extension.getAlphaModifier());
+            betaModifier(extension.getBetaModifier());
+            dirtyIdentifier(extension.getDirtyIdentifier());
             return this;
         }
 

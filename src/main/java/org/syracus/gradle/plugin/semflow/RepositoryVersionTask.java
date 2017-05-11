@@ -29,6 +29,8 @@ public class RepositoryVersionTask extends DefaultTask {
                     .dirtyIdentifier(extension.getDirtyIdentifier())
                     .build();
 
+
+
             Version repositoryVersion = versionFactory.getCurrentVersion(repository);
             if (null == repositoryVersion) {
                 System.out.println("The repository does not contain any valid release version");
