@@ -6,10 +6,6 @@
  * user guide available at https://docs.gradle.org/3.4/userguide/tutorial_java_projects.html
  */
 
-plugins {
-    id "nebula.project" version "3.3.0"
-    id "nebula.release" version "5.0.0"
-}
 
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
@@ -22,10 +18,9 @@ apply plugin: 'eclipse'
 
 apply plugin: 'maven-publish'
 
-apply plugin: 'nebula.project'
 
 group = 'org.syracus.gradle'
-//version = '1.0.0-SNAPSHOT'
+version = '1.0.2'
 
 
 
