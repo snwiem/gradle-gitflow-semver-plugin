@@ -14,7 +14,7 @@ used to identify uncommited repository statuses.
 ## Installation
 
 ```groovy
-buildScript {
+buildscript {
    dependencies {
      classpath group: 'org.syracus.gradle', name: 'semflow-plugin', version: '1.0.3'
    }
